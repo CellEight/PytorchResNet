@@ -7,12 +7,8 @@ from torchvision import datasets
 from torchvision import transforms
 import numpy as np
 import pickle
-from models.VGGA import VGGA 
-from models.VGGALRN import VGGALRN 
-from models.VGGB import VGGB 
-from models.VGGC import VGGC 
-from models.VGGD import VGGD 
-from models.VGGE import VGGE 
+from models.ResNet18 import ResNet18
+from models.ResNet34 import ResNet34
 
 # Select device to train on
 device = torch.device("cuda")
@@ -55,57 +51,12 @@ if __name__ == "__main__":
     test_dl = torch.utils.data.DataLoader(test_data, batch_size=16, shuffle=True, num_workers=4)
     # Train Models
     epochs = 50 
-    # VGGA 
-    model = VGGA(11).to(device)
+    # ResNet34 
+    model = ResNet34(11).to(device)
     loss_func = nn.CrossEntropyLoss()
     opt = optim.Adam(model.parameters(), lr=0.0001)
     train_loss, test_loss = train(model, train_dl, test_dl, opt, loss_func, epochs)
     # Save Model to pkl file
-    f = open(f'vgga.pkl','wb')
-    pickle.dump(model,f)
-    f.close()
-    # VGGA-LRN
-    model = VGGALRN(11).to(device)
-    loss_func = nn.CrossEntropyLoss()
-    opt = optim.Adam(model.parameters(), lr=0.0001)
-    train_loss, test_loss = train(model, train_dl, test_dl, opt, loss_func, epochs)
-    # Save Model to pkl file
-    f = open(f'vggalrn.pkl','wb')
-    pickle.dump(model,f)
-    f.close()
-    # VGGB
-    model = VGGB(11).to(device)
-    loss_func = nn.CrossEntropyLoss()
-    opt = optim.Adam(model.parameters(), lr=0.0001)
-    train_loss, test_loss = train(model, train_dl, test_dl, opt, loss_func, epochs)
-    # Save Model to pkl file
-    f = open(f'vggb.pkl','wb')
-    pickle.dump(model,f)
-    f.close()
-    # VGGC 
-    model = VGGC(11).to(device)
-    loss_func = nn.CrossEntropyLoss()
-    opt = optim.Adam(model.parameters(), lr=0.0001)
-    train_loss, test_loss = train(model, train_dl, test_dl, opt, loss_func, epochs)
-    # Save Model to pkl file
-    f = open(f'vggc.pkl','wb')
-    pickle.dump(model,f)
-    f.close()
-    # VGGD 
-    model = VGGD(11).to(device)
-    loss_func = nn.CrossEntropyLoss()
-    opt = optim.Adam(model.parameters(), lr=0.0001)
-    train_loss, test_loss = train(model, train_dl, test_dl, opt, loss_func, epochs)
-    # Save Model to pkl file
-    f = open(f'vggd.pkl','wb')
-    pickle.dump(model,f)
-    f.close()
-    # VGGE 
-    model = VGGE(11).to(device)
-    loss_func = nn.CrossEntropyLoss()
-    opt = optim.Adam(model.parameters(), lr=0.0001)
-    train_loss, test_loss = train(model, train_dl, test_dl, opt, loss_func, epochs)
-    # Save Model to pkl file
-    f = open(f'vgge.pkl','wb')
+    f = open(f'resnet18.pkl','wb')
     pickle.dump(model,f)
     f.close()
