@@ -55,7 +55,7 @@ if __name__ == "__main__":
     # Train Models
     epochs = 50 
     # ResNet50 
-    model = ResNet101(11).to(device)
+    model = ResNet152(11).to(device)
     loss_func = nn.CrossEntropyLoss()
     opt = optim.Adam(model.parameters(), lr=0.0001)
     train_loss, test_loss = train(model, train_dl, test_dl, opt, loss_func, epochs)
