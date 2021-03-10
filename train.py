@@ -9,6 +9,7 @@ import numpy as np
 import pickle
 from models.ResNet18 import ResNet18
 from models.ResNet34 import ResNet34
+from models.ResNet50 import ResNet50
 
 # Select device to train on
 device = torch.device("cuda")
@@ -51,8 +52,8 @@ if __name__ == "__main__":
     test_dl = torch.utils.data.DataLoader(test_data, batch_size=16, shuffle=True, num_workers=4)
     # Train Models
     epochs = 50 
-    # ResNet34 
-    model = ResNet34(11).to(device)
+    # ResNet50 
+    model = ResNet50(11).to(device)
     loss_func = nn.CrossEntropyLoss()
     opt = optim.Adam(model.parameters(), lr=0.0001)
     train_loss, test_loss = train(model, train_dl, test_dl, opt, loss_func, epochs)

@@ -55,7 +55,7 @@ class ResNet18(nn.Module):
                        nn.BatchNorm2d(512), \
                        nn.ReLU())
         self.avg_pool = nn.AvgPool2d(7)
-        self.fc = nn.Linear(512,100)
+        self.fc = nn.Linear(512,11)
          
     def forward(self,x):
         x = F.relu(self.bn1_1(self.conv1_1(x)))
