@@ -159,16 +159,29 @@ class ResNet50(nn.Module):
         self.fc = nn.Linear(2048,n_classes)
          
     def forward(self,x):
+        # Block 1
         x = F.relu(self.bn1_1(self.conv1_1(x)))
         x = self.max_pool(x)
+        # Block 2
         x = self.conv2_1(x)
         x = self.conv2_2(x)
+        x = self.conv2_3(x)
+        # Block 3
         x = self.conv3_1(x)
         x = self.conv3_2(x)
+        x = self.conv3_3(x)
+        x = self.conv3_4(x)
+        # Block 4
         x = self.conv4_1(x)
         x = self.conv4_2(x)
+        x = self.conv4_3(x)
+        x = self.conv4_4(x)
+        x = self.conv4_5(x)
+        x = self.conv4_6(x)
+        # Block 5
         x = self.conv5_1(x)
         x = self.conv5_2(x)
+        x = self.conv5_3(x)
         x = self.avg_pool(x).view(-1,2048)
         x = self.fc(x)
         return x
